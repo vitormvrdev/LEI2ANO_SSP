@@ -1,1 +1,33 @@
-1234
+    PRIORITIES
+id PK AI
+name varchar(255)
+status enum(active,inactive)
+
+    LEVELS
+id PK AI
+name varchar(255)
+status enum(active,inactive)
+
+    USERS
+id PK AI
+name varchar(255)
+level_id fk(LEVELS.id)
+role varchar(255)
+status enum(active,inactive)
+
+    CATEGORIES
+id PK AI
+name varchar(255)
+status enum(active,inactive)
+
+    TICKETS
+id PK AI
+title varchar(255)
+description text
+priority_id fk(PRIORITIES.id)
+date datetime
+category_id fk(CATEGORIES.id)
+level_id fk(LEVELS.id)
+technician_id fk(USERS.id)
+status enum(active,inactive)
+
