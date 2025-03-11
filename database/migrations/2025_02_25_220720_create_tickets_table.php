@@ -19,7 +19,7 @@ return new class () extends Migration {
             $table->foreignId('level_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamp('closed_at')->nullable();
-            $table->enum('status', ['open', 'closed']);
+            $table->enum('status', ['open', 'in_progress', 'closed'])->default('open');
             $table->timestamps();
         });
     }
