@@ -18,7 +18,7 @@ return new class () extends Migration {
             $table->dateTime('date');
             $table->foreignId('category_id')->constrained('categories');
             $table->foreignId('level_id')->constrained('levels');
-            $table->foreignId('technician_id')->constrained('users');
+            $table->timestamp('closed_at')->nullable();
             $table->enum('status', ['active', 'inactive']);
             $table->timestamps();
         });
