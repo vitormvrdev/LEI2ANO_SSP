@@ -14,3 +14,6 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
 // Admin
 Route::get('/admin/category', [CategoryController::class, 'index'])->name('admin.category.index');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
