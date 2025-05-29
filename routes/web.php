@@ -14,10 +14,12 @@ Route::get('/', function () {
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
 // Admin
-Route::get('/admin/category', [CategoryController::class, 'index'])->name('admin.category.index');
+Route::resource('admin/categories', CategoryController::class)->names('categories');
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/create', [TicketController::class, 'create'])->name('ticket.create');
+Route::get('ticket/create', [TicketController::class, 'create'])->name('ticket.create');
 Route::post('/store', [TicketController::class, 'store'])->name('ticket.store');
