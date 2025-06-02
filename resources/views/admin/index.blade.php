@@ -153,15 +153,15 @@
     <p class="menu-label">Examples</p>
     <ul class="menu-list">
       <li class="--set-active-tables-html">
-        <a href="{{route ('admin.index')}}">
+        <a href="{{route ('categories.index')}}">
           <span class="icon"><i class="mdi mdi-table"></i></span>
-          <span class="menu-item-label">Categorias</span>
+          <span class="menu-item-label">Categories</span>
         </a>
       </li>
       <li class="--set-active-forms-html">
         <a href="forms.html">
           <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
-          <span class="menu-item-label">Forms</span>
+          <span class="menu-item-label">Priority</span>
         </a>
       </li>
       <li class="--set-active-profile-html">

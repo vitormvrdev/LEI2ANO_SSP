@@ -72,7 +72,7 @@
                             </div>
 
                             <div class="mb-0">
-                                <div class="md:ml-auto md:w-3/4">
+                                <div class="md:ml-auto md:w-3/4 flex flex-wrap items-center gap-4">
                                     <button 
                                         type="submit" 
                                         class="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-indigo-500/50"
@@ -80,9 +80,16 @@
                                         {{ __('Login') }}
                                     </button>
 
+                                    <a 
+                                        href="{{ route('register') }}"
+                                        class="border-2 border-indigo-500 text-indigo-600 hover:text-white hover:bg-indigo-500 font-semibold py-3 px-8 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-indigo-500/50"
+                                    >
+                                        {{ __('Register') }}    
+                                    </a>
+
                                     @if (Route::has('password.request'))
                                         <a 
-                                            class="ml-4 text-indigo-600 hover:text-purple-600 font-medium transition-colors duration-300 hover:underline" 
+                                            class="ml-auto text-indigo-600 hover:text-purple-600 font-medium transition-colors duration-300 hover:underline" 
                                             href="{{ route('password.request') }}"
                                         >
                                             {{ __('Forgot Your Password?') }}
