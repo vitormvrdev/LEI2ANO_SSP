@@ -14,14 +14,17 @@ Route::get('/', function () {
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
+Route::get('/admin', [TicketController::class, 'list'])->name('admin.list');
+
 // Admin
 Route::resource('admin/categories', CategoryController::class)->names('categories');
 Route::resource('admin/priorities', PriorityController::class)->names('admin.priorities');
-
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('ticket/create', [TicketController::class, 'create'])->name('ticket.create');
+Route::resource('tickets', TicketController::class)->names('tickets');
+
+
 Route::post('/store', [TicketController::class, 'store'])->name('ticket.store');

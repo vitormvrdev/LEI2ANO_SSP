@@ -77,7 +77,7 @@
 
                 <!-- Form Content -->
                 <div class="p-8">
-                    <form action="{{ route('priorities.update', $category->id) }}" method="POST" class="space-y-6">
+                    <form action="{{ route('admin.priorities.update', $category->id) }}" method="POST" class="space-y-6">
                     @csrf
                     @method('PUT')
 
@@ -135,7 +135,7 @@
 
                     <!-- Botões -->
                     <div class="flex flex-col sm:flex-row gap-4 pt-6">
-                        <a href="{{ route('priorities.index') }}"
+                        <a href="{{ route('admin.priorities.index') }}"
                             class="flex-1 h-12 btn-secondary text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center space-x-2">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>

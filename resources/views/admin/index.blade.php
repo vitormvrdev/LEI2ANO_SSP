@@ -159,13 +159,13 @@
         </a>
       </li>
       <li class="--set-active-forms-html">
-        <a href="{{route('priorities.index')}}">
+        <a href="{{route('admin.priorities.index')}}">
           <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
           <span class="menu-item-label">Priority</span>
         </a>
       </li>
       <li class="--set-active-profile-html">
-        <a href="profile.html">
+        <a href="{{route ('admin.list')}}">
           <span class="icon"><i class="mdi mdi-account-circle"></i></span>
           <span class="menu-item-label">Profile</span>
         </a>

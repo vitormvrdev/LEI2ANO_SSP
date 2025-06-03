@@ -10,7 +10,6 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        dd($categories); // Debugging line to check categories
         return view('admin.category.index', compact('categories'));
     }
 
