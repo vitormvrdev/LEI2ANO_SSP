@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\PriorityController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,6 +16,7 @@ Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
 // Admin
 Route::resource('admin/categories', CategoryController::class)->names('categories');
+Route::resource('admin/priorities', PriorityController::class)->names('admin.priorities');
 
 
 Auth::routes();

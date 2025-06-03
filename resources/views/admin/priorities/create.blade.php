@@ -55,7 +55,7 @@
 
                     <!-- Form Content -->
                     <div class="p-8 md:p-12">
-                        <form action="{{ route('categories.store') }}" method="POST" class="space-y-8">
+                        <form action="{{ route('admin.priorities.store') }}" method="POST" class="space-y-8">
                             @csrf
 
                             <!-- Nome da Categoria -->
@@ -107,11 +107,11 @@
                                         name="status" 
                                         class="w-full px-6 py-4 bg-white/5 border-2 border-white/10 rounded-2xl text-white text-lg focus:outline-none focus:border-purple-400 focus:bg-white/10 transition-all duration-300 appearance-none group-hover:border-white/20 @error('status') border-red-400 @enderror"
                                     >
-                                        <option value="active" {{ old('status') == 'active' ? 'selected' : '' }} class="bg-slate-800 text-white">
-                                            🟢 Active - Visível publicamente
+                                        <option value="ativo" {{ old('status') == 'ativo' ? 'selected' : '' }} class="bg-slate-800 text-white">
+                                            🟢 Ativo - Visível publicamente
                                         </option>
-                                        <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }} class="bg-slate-800 text-white">
-                                            🔴 Inactive - Oculto do público
+                                        <option value="inativo" {{ old('status') == 'inativo' ? 'selected' : '' }} class="bg-slate-800 text-white">
+                                            🔴 Inativo - Oculto do público
                                         </option>
                                     </select>
                                     <div class="absolute inset-y-0 right-0 pr-6 flex items-center pointer-events-none">
@@ -130,9 +130,33 @@
                                     </div>
                                 @enderror
                             </div>
+
+                            <!-- Descrição -->
+                            <div class="group">
+                                <label for="description" class="block text-lg font-semibold text-white mb-3">
+                                    <span class="flex items-center">
+                                        <svg class="w-5 h-5 mr-2 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+                                        </svg>
+                                        Descrição
+                                        <span class="text-white/60 text-sm ml-2 font-normal">(opcional)</span>
+                                    </span>
+                                </label>
+                                <div class="relative">
+                                    <textarea 
+                                        id="description" 
+                                        name="description" 
+                                        rows="4"
+                                        class="w-full px-6 py-4 bg-white/5 border-2 border-white/10 rounded-2xl text-white text-lg placeholder-white/50 focus:outline-none focus:border-purple-400 focus:bg-white/10 transition-all duration-300 resize-none group-hover:border-white/20"
+                                        placeholder="Descreva o propósito e conteúdo desta categoria..."
+                                    >{{ old('description') }}</textarea>
+                                    <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                                </div>
+                            </div>
+
                             <!-- Action Buttons -->
                             <div class="flex flex-col sm:flex-row gap-6 pt-8">
-                                <a href="{{ route('categories.index') }}" 
+                                <a href="{{ route('priorities.index') }}" 
                                    class="group relative flex-1 inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold text-lg rounded-2xl transition-all duration-300 transform hover:scale-105 border border-white/20 hover:border-white/40">
                                     <svg class="w-5 h-5 mr-3 group-hover:-translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
