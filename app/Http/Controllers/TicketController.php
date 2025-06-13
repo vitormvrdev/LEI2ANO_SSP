@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTicketRequest;
 use App\Http\Requests\UpdateTicketRequest;
 use App\Models\Ticket;
-use App\Models\Level;
 use App\Models\Priority;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -17,7 +16,7 @@ class TicketController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Ticket::with(['category', 'priority', 'level', 'user']);
+        $query = Ticket::with(['category', 'priority', 'user']);
 
         // Search functionality
         if ($request->filled('search')) {
@@ -44,11 +43,6 @@ class TicketController extends Controller
             $query->where('category_id', $request->get('category_id'));
         }
 
-        // Level filter
-        if ($request->filled('level_id')) {
-            $query->where('level_id', $request->get('level_id'));
-        }
-
         // Order by created_at desc
         $query->orderBy('created_at', 'desc');
 
@@ -58,7 +52,6 @@ class TicketController extends Controller
         // Get filter options
         $categories = Category::all();
         $priorities = Priority::all();
-        $levels = Level::all();
 
         // Calculate stats
         $stats = [
@@ -68,7 +61,7 @@ class TicketController extends Controller
             'total' => Ticket::count(),
         ];
 
-        return view('ticket.index', compact('tickets', 'categories', 'priorities', 'levels', 'stats'));
+        return view('tickets.index', compact('tickets', 'categories', 'priorities', 'stats'));
     }
 
     /**
@@ -78,9 +71,8 @@ class TicketController extends Controller
     {
         $categories = Category::all();
         $priorities = Priority::all();
-        $levels = Level::all();
         
-        return view('tickets.create', compact('categories', 'priorities', 'levels'));
+        return view('tickets.create', compact('categories', 'priorities'));
     }
 
     /**
@@ -93,7 +85,6 @@ class TicketController extends Controller
             'description' => 'required|string',
             'category_id' => 'required|exists:categories,id',
             'priority_id' => 'required|exists:priorities,id',
-            'level_id' => 'required|exists:levels,id',
         ]);
 
         $ticket = new Ticket();
@@ -101,7 +92,6 @@ class TicketController extends Controller
         $ticket->description = $request->input('description');
         $ticket->category_id = $request->input('category_id');
         $ticket->priority_id = $request->input('priority_id');
-        $ticket->level_id = $request->input('level_id');
         $ticket->user_id = auth()->id();
         $ticket->status = 'open'; // Default status
         $ticket->save();
@@ -125,9 +115,8 @@ class TicketController extends Controller
     {
         $categories = Category::all();
         $priorities = Priority::all();
-        $levels = Level::all();
         
-        return view('tickets.edit', compact('ticket', 'categories', 'priorities', 'levels'));
+        return view('tickets.edit', compact('ticket', 'categories', 'priorities'));
     }
 
     /**
@@ -140,7 +129,6 @@ class TicketController extends Controller
             'description' => 'required|string',
             'category_id' => 'required|exists:categories,id',
             'priority_id' => 'required|exists:priorities,id',
-            'level_id' => 'required|exists:levels,id',
             'status' => 'required|in:open,in_progress,closed',
         ]);
 
@@ -148,7 +136,6 @@ class TicketController extends Controller
         $ticket->description = $request->input('description');
         $ticket->category_id = $request->input('category_id');
         $ticket->priority_id = $request->input('priority_id');
-        $ticket->level_id = $request->input('level_id');
         $ticket->status = $request->input('status');
         
         // Set closed_at when status changes to closed

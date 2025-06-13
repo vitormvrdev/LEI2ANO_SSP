@@ -25,7 +25,7 @@
                             Dashboard
                         </a>
                         <a
-                            href="{{ route('ticket.create') }}"
+                            href="{{ route('tickets.create') }}"
                             class="w-full bg-[#1F2937] hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-xl transition duration-200 shadow-md"
                         >
                             Criar Ticket

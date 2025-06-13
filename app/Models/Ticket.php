@@ -13,7 +13,6 @@ class Ticket extends Model
         'title',
         'description',
         'category_id',
-        'level_id',
         'priority_id',
         'user_id',
         'closed_at',
@@ -28,12 +27,6 @@ class Ticket extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
-    }
-
-    // Relação com Level
-    public function level()
-    {
-        return $this->belongsTo(Level::class);
     }
 
     // Relação com Priority
