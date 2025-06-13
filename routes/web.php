@@ -14,7 +14,7 @@ Route::get('/', function () {
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 
-Route::get('/admin', [TicketController::class, 'list'])->name('admin.list');
+Route::get('/admin', [TicketController::class, 'index'])->name('admin.index');
 
 // Admin
 Route::resource('admin/categories', CategoryController::class)->names('categories');
@@ -24,7 +24,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('tickets', TicketController::class)->names('tickets');
+Route::resource('ticket', TicketController::class)->names('ticket');
 
 
 Route::post('/store', [TicketController::class, 'store'])->name('ticket.store');

@@ -68,7 +68,7 @@ class TicketController extends Controller
             'total' => Ticket::count(),
         ];
 
-        return view('tickets.index', compact('tickets', 'categories', 'priorities', 'levels', 'stats'));
+        return view('ticket.index', compact('tickets', 'categories', 'priorities', 'levels', 'stats'));
     }
 
     /**
