@@ -25,6 +25,3 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('tickets', TicketController::class)->names('tickets');
-
-
-Route::post('/store', [TicketController::class, 'store'])->name('ticket.store');

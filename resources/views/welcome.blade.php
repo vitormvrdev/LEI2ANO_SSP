@@ -19,7 +19,7 @@
                 <div class="flex flex-col space-y-4">
                     @auth
                         <a
-                            href="{{ url('/admin') }}"
+                            href="{{ url('/admin/index') }}"
                             class="w-full bg-[#FF2D20] hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-xl transition duration-200 shadow-md"
                         >
                             Dashboard
@@ -29,6 +29,12 @@
                             class="w-full bg-[#1F2937] hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-xl transition duration-200 shadow-md"
                         >
                             Criar Ticket
+                        </a>
+                        <a 
+                            href="{{ route('login') }}"
+                            class="w-full bg-[#1F2937] hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-xl transition duration-200 shadow-md"
+                        >
+                            Logout
                         </a>
                     @else
                         <a
