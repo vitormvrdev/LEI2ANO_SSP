@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar Ticket</title>
+    <title>Update Ticket</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 relative overflow-hidden">
@@ -27,11 +27,8 @@
                     </div>
                 </div>
                 <h1 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent mb-4">
-                    Criar Novo Ticket
+                    Update your Ticket
                 </h1>
-                <p class="text-xl text-purple-200 max-w-2xl mx-auto leading-relaxed">
-                    Preencha os dados abaixo para abrir um ticket de suporte
-                </p>
             </div>
 
             <!-- Form Container -->
@@ -79,21 +76,21 @@
                             </div>
                         </div>
 
-                        <form method="POST" action="{{ route('tickets.store')}}" class="space-y-6">
+                        <form method="PATCH" action="{{ route('tickets.store')}}" class="space-y-6">
                             @csrf
                             <!-- Título -->
                             <div class="space-y-2">
                                 <label for="title" class="block text-sm font-medium text-white">
                                     Título
                                 </label>
-                                <input 
-                                    type="text" 
+                                <textarea 
                                     id="title" 
                                     name="title" 
-                                    placeholder="Descreva brevemente o problema"
-                                    class="w-full px-6 py-3 bg-white/5 border-2 border-white/10 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-purple-400 focus:bg-white/10 transition-all duration-300"
+                                    rows="1"
+                                    placeholder="Descreva brevemente o problema ou solicitação"
+                                    class="w-full px-6 py-3 bg-white/5 border-2 border-white/10 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-purple-400 focus:bg-white/10 transition-all duration-300 resize-none overflow-hidden"
                                     required
-                                >
+                                >{{ old('description', $ticket->title) }}</textarea>
                             </div>
 
                             <!-- Descrição -->
@@ -108,7 +105,7 @@
                                     placeholder="Descreva detalhadamente o problema ou solicitação"
                                     class="w-full px-6 py-3 bg-white/5 border-2 border-white/10 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-purple-400 focus:bg-white/10 transition-all duration-300 resize-none"
                                     required
-                                ></textarea>
+                                >{{ old('description', $ticket->description) }}</textarea>
                             </div>
 
                             <!-- Grid para os selects -->
@@ -124,9 +121,12 @@
                                         class="w-full px-4 py-3 bg-white/5 border-2 border-white/10 rounded-xl text-white focus:outline-none focus:border-purple-400 appearance-none"
                                         required
                                     >
-                                        <option value="" class="bg-slate-800">Selecione</option>
                                         @foreach($priorities as $priority)
-                                            <option value="{{ $priority->id }}" class="bg-slate-800">
+                                            <option 
+                                                value="{{ $priority->id }}" 
+                                                class="bg-slate-800"
+                                                @selected(old('priority_id', $ticket->priority_id) == $priority->id)
+                                            >
                                                 {{ $priority->name }}
                                             </option>
                                         @endforeach
@@ -147,7 +147,11 @@
                                     >
                                         <option value="" class="bg-slate-800">Selecione uma categoria</option>
                                         @foreach($categories as $category)
-                                            <option value="{{ $category->id }}" class="bg-slate-800">
+                                            <option 
+                                                value="{{ $category->id }}" 
+                                                class="bg-slate-800"
+                                                @selected(old('category_id', $ticket->category_id) == $category->id)
+                                            >
                                                 {{ $category->name }}
                                                 @if($category->level)
                                                     - Nível {{ $category->level }}
@@ -172,7 +176,7 @@
                                     <svg class="relative w-5 h-5 mr-2 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                                     </svg>
-                                    <span class="relative">Criar Ticket</span>
+                                    <span class="relative">Update Ticket</span>
                                 </button>
                             </div>
                         </form>

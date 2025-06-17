@@ -1,6 +1,12 @@
-@extends('layouts.app')
-
-@section('content')
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Nova Categoria</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
 <div class="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 relative overflow-hidden">
     <!-- Background decorative elements -->
     <div class="absolute inset-0">
@@ -11,6 +17,7 @@
 
     <div class="relative z-10 py-12 px-4 sm:px-6 lg:px-8">
         <div class="max-w-3xl mx-auto">
+
             <!-- Header Section -->
             <div class="text-center mb-12">
                 <div class="relative inline-block">
@@ -31,164 +38,72 @@
 
             <!-- Main Form Container -->
             <div class="relative">
-                <!-- Glow effect -->
                 <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur opacity-25"></div>
-                
+
                 <div class="relative bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 overflow-hidden">
-                    <!-- Form Header -->
                     <div class="relative bg-gradient-to-r from-purple-600/80 to-pink-600/80 backdrop-blur-sm px-8 py-6">
                         <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
-                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                    </svg>
-                                </div>
-                                <h2 class="text-2xl font-bold text-white">Informações da Categoria</h2>
-                            </div>
-                            <div class="hidden sm:flex items-center space-x-2">
-                                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                                <span class="text-sm text-white/80">Online</span>
-                            </div>
+                            <h2 class="text-2xl font-bold text-white">Informações da Categoria</h2>
                         </div>
                     </div>
 
-                    <!-- Form Content -->
                     <div class="p-8 md:p-12">
                         <form action="{{ route('categories.store') }}" method="POST" class="space-y-8">
                             @csrf
 
-                            <!-- Nome da Categoria -->
-                            <div class="group">
-                                <label for="name" class="block text-lg font-semibold text-white mb-3">
-                                    <span class="flex items-center">
-                                        <svg class="w-5 h-5 mr-2 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-                                        </svg>
-                                        Nome da Categoria
-                                        <span class="text-red-400 ml-1">*</span>
-                                    </span>
-                                </label>
-                                <div class="relative">
-                                    <input 
-                                        type="text" 
-                                        id="name" 
-                                        name="name" 
-                                        value="{{ old('name') }}"
-                                        class="w-full px-6 py-4 bg-white/5 border-2 border-white/10 rounded-2xl text-white text-lg placeholder-white/50 focus:outline-none focus:border-purple-400 focus:bg-white/10 transition-all duration-300 group-hover:border-white/20 @error('name') border-red-400 @enderror" 
-                                        placeholder="Ex: Tecnologia, Lifestyle, Negócios..."
-                                        required
-                                    >
-                                    <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                                </div>
-                                @error('name')
-                                    <div class="mt-3 flex items-center text-red-400">
-                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                            <!-- Nome -->
+                            <div>
+                                <label for="name" class="block text-lg font-semibold text-white mb-2">Nome da Categoria <span class="text-red-400">*</span></label>
+                                <input 
+                                    type="text" 
+                                    id="name" 
+                                    name="name" 
+                                    value="{{ old('name') }}" 
+                                    class="w-full px-6 py-4 bg-white/5 border-2 border-white/10 rounded-2xl text-white focus:outline-none focus:border-purple-400" 
+                                    placeholder="Ex: Tecnologia, Lifestyle..." 
+                                    required
+                                >
                             </div>
 
-                            <!-- Status da Categoria -->
-                            <div class="group">
-                                <label for="status" class="block text-lg font-semibold text-white mb-3">
-                                    <span class="flex items-center">
-                                        <svg class="w-5 h-5 mr-2 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                        Status da Categoria
-                                    </span>
-                                </label>
-                                <div class="relative">
-                                    <select 
-                                        id="status" 
-                                        name="status" 
-                                        class="w-full px-6 py-4 bg-white/5 border-2 border-white/10 rounded-2xl text-white text-lg focus:outline-none focus:border-purple-400 focus:bg-white/10 transition-all duration-300 appearance-none group-hover:border-white/20 @error('status') border-red-400 @enderror"
-                                    >
-                                        <option value="active" {{ old('status') == 'active' ? 'selected' : '' }} class="bg-slate-800 text-white">
-                                            🟢 Active - Visível publicamente
-                                        </option>
-                                        <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }} class="bg-slate-800 text-white">
-                                            🔴 Inactive - Oculto do público
-                                        </option>
-                                    </select>
-                                    <div class="absolute inset-y-0 right-0 pr-6 flex items-center pointer-events-none">
-                                        <svg class="h-6 w-6 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                        </svg>
-                                    </div>
-                                    <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                                </div>
-                                @error('status')
-                                    <div class="mt-3 flex items-center text-red-400">
-                                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                            <!-- Status -->
+                            <div>
+                                <label for="status" class="block text-lg font-semibold text-white mb-2">Status</label>
+                                <select 
+                                    id="status" 
+                                    name="status" 
+                                    class="w-full px-6 py-4 bg-white/5 border-2 border-white/10 rounded-2xl text-white focus:outline-none focus:border-purple-400"
+                                >
+                                    <option value="active" {{ old('status') == 'active' ? 'selected' : '' }} class="bg-slate-800">🟢 Ativa</option>
+                                    <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }} class="bg-slate-800">🔴 Inativa</option>
+                                </select>
                             </div>
-                            <!-- Action Buttons -->
+
+                            <!-- Nível -->
+                            <div>
+                                <label for="level" class="block text-lg font-semibold text-white mb-2">Nível da Categoria</label>
+                                <select 
+                                    id="level" 
+                                    name="level" 
+                                    class="w-full px-6 py-4 bg-white/5 border-2 border-white/10 rounded-2xl text-white focus:outline-none focus:border-purple-400"
+                                    required
+                                >
+                                    <option value="" class="bg-slate-800 text-white">Selecione o nível</option>
+                                    <option value="1" {{ old('level') == '1' ? 'selected' : '' }} class="bg-slate-800 text-white">Nível 1</option>
+                                    <option value="2" {{ old('level') == '2' ? 'selected' : '' }} class="bg-slate-800 text-white">Nível 2</option>
+                                    <option value="3" {{ old('level') == '3' ? 'selected' : '' }} class="bg-slate-800 text-white">Nível 3</option>
+                                </select>
+                            </div>
+
+                            <!-- Botões -->
                             <div class="flex flex-col sm:flex-row gap-6 pt-8">
-                                <a href="{{ route('categories.index') }}" 
-                                   class="group relative flex-1 inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-bold text-lg rounded-2xl transition-all duration-300 transform hover:scale-105 border border-white/20 hover:border-white/40">
-                                    <svg class="w-5 h-5 mr-3 group-hover:-translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                                    </svg>
+                                <a href="{{ route('categories.index') }}" class="flex-1 px-8 py-4 bg-white/10 hover:bg-white/20 text-white text-center font-bold rounded-2xl transition-all duration-300 border border-white/20 hover:border-white/40">
                                     Cancelar
                                 </a>
-                                
-                                <button type="submit" 
-                                        class="group relative flex-1 inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold text-lg rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-green-500/25">
-                                    <div class="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 rounded-2xl blur opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-                                    <svg class="relative w-5 h-5 mr-3 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="relative">Criar Categoria</span>
+                                <button type="submit" class="flex-1 px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-green-500/25">
+                                    Criar Categoria
                                 </button>
                             </div>
                         </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tips Section -->
-            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-blue-500/10 backdrop-blur-sm border border-blue-500/20 rounded-2xl p-6 hover:bg-blue-500/20 transition-all duration-300">
-                    <div class="flex items-start space-x-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-10 h-10 bg-blue-500/20 rounded-xl flex items-center justify-center">
-                                <svg class="h-6 w-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-blue-300 mb-2">Dica de Nomenclatura</h3>
-                            <p class="text-blue-200 text-sm leading-relaxed">
-                                Use nomes claros e descritivos. Evite abreviações e mantenha consistência com outras categorias.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-purple-500/10 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-6 hover:bg-purple-500/20 transition-all duration-300">
-                    <div class="flex items-start space-x-4">
-                        <div class="flex-shrink-0">
-                            <div class="w-10 h-10 bg-purple-500/20 rounded-xl flex items-center justify-center">
-                                <svg class="h-6 w-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-purple-300 mb-2">Gestão de Status</h3>
-                            <p class="text-purple-200 text-sm leading-relaxed">
-                                Categorias ativas aparecem no site público. Use "Inativo" para preparar categorias antes de publicar.
-                            </p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -203,17 +118,9 @@
     66% { transform: translate(-20px, 20px) scale(0.9); }
     100% { transform: translate(0px, 0px) scale(1); }
 }
-
-.animate-blob {
-    animation: blob 7s infinite;
-}
-
-.animation-delay-2000 {
-    animation-delay: 2s;
-}
-
-.animation-delay-4000 {
-    animation-delay: 4s;
-}
+.animate-blob { animation: blob 7s infinite; }
+.animation-delay-2000 { animation-delay: 2s; }
+.animation-delay-4000 { animation-delay: 4s; }
 </style>
-@endsection
+</body>
+</html>

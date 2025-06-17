@@ -156,22 +156,6 @@
                 </div>
             </div>
 
-            <!-- Ações adicionais -->
-            <div class="mt-6 flex justify-center space-x-4">
-                <button class="text-slate-400 hover:text-slate-300 text-sm flex items-center space-x-1 transition-colors">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    <span>Histórico de alterações</span>
-                </button>
-                <button class="text-red-400 hover:text-red-300 text-sm flex items-center space-x-1 transition-colors">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                    </svg>
-                    <span>Eliminar categoria</span>
-                </button>
-            </div>
-
             <!-- Decoração adicional -->
             <div class="absolute top-10 left-10 w-20 h-20 bg-amber-500/10 rounded-full blur-xl"></div>
             <div class="absolute bottom-10 right-10 w-32 h-32 bg-blue-500/10 rounded-full blur-xl"></div>

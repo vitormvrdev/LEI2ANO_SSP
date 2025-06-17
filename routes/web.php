@@ -25,3 +25,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('tickets', TicketController::class)->names('tickets');
+//rota para editar ticket
+Route::get('tickets/{ticket}/edit', [TicketController::class, 'edit'])->name('tickets.edit');

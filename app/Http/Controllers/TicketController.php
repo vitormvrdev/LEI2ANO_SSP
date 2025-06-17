@@ -111,11 +111,12 @@ class TicketController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Ticket $ticket)
+    public function edit($id)
     {
+        $ticket = Ticket::findOrFail($id);
         $categories = Category::all();
         $priorities = Priority::all();
-        
+
         return view('tickets.edit', compact('ticket', 'categories', 'priorities'));
     }
 
